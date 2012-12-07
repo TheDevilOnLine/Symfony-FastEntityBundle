@@ -1,5 +1,5 @@
 {
-    "name": "DotCommerce/FastEntityBundle",
+    "name": "dotcommerce/fastentitybundle",
 	"type": "symfony-bundle",
     "description": "Fast entity bundle for Symfony 2, used to generate dropdowns from entities faster than the default 'entity' formtype",
     "keywords": ["symfony2", "thedevilonline", "entity", "drowndown", "fast"],
@@ -7,7 +7,7 @@
     "license": "MIT",
     "require": {
         "php": ">=5.3.0",
-		"symfony/framework-bundle": "2.*,<2.3",
+		"symfony/framework-bundle": "2.*,<2.3"
     }
 	"autoload": {
         "psr-0": {
