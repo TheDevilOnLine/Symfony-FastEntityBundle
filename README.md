@@ -19,3 +19,47 @@ To use the newly generated form type you have to specify it manualy in a Form. T
 ## Last updates
 **2012-12-07**
 - First public version
+
+## Installation
+Pretty simple with [composer](http://packagist.org), add:
+
+    {
+        require: {
+            "dotcommerce/fastentitybundle": "dev-master"
+        }
+    }
+
+If you use a `deps` file, add:
+
+    [DotCommerceFastEntityBundle]
+        git://github.com/TheDevilOnLine/Symfony-FastEntityBundle.git
+
+Or if you want to clone the repos:
+
+    git clone git://github.com/TheDevilOnLine/Symfony-FastEntityBundle.git vendor/dotcommerce/fastentitybundle/DotCommerce/FastEntityBundle
+	
+### Add the namespaces to your autoloader unless you are using composer
+
+``` php
+<?php
+// File: app/autoload.php
+$loader->registerNamespaces(array(
+    'DotCommerce\\FastEntityBundle'      => __DIR__.'/../vendor/dotcommerce/fastentitybundle/DotCommerce/FastEntityBundle',
+    // ...
+));
+```
+
+### Add PaginatorBundle to your application kernel
+
+``` php
+<?php
+    // File: app/AppKernel.php
+    public function registerBundles()
+    {
+        return array(
+            // ...
+            new DotCommerce\FastEntityBundle\DotCommerceFastEntityBundle(),
+            // ...
+        );
+    }
+```
