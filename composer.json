@@ -14,5 +14,15 @@
             "DotCommerce\\FastEntityBundle": ""
         }
     },
-    "target-dir": "DotCommerce/FastEntityBundle"
+    "target-dir": "DotCommerce/FastEntityBundle",
+	"authors": [
+        {
+            "name": "DotCommerce",
+            "homepage": "http://www.dotcommerce.nl"
+        },
+        {
+            "name": "Tom (TheDevilOnLine) Maaswinkel",
+            "homepage": "http://12wiki.blogspot.com/"
+        }
+    ],
 }
