@@ -1,0 +1,60 @@
+<?php
+namespace {{ bundleNamespace }}\Form\Type;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use DotCommerce\AzulewebBundle\Form\DataTransformer\{{ entityName }}Transformer;
+use Doctrine\ORM\EntityManager;
+
+class {{ entityName }}Type extends AbstractType
+{
+    /**
+     * @var EntityManager
+     */
+    private $om;
+
+    /**
+     * @param EntityManager $om
+     */
+    public function __construct($om)
+    {
+        $this->om = $om;
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $choices = array();
+
+        $dql = "SELECT o.{{ keyField }}, o.{{ fieldName }} FROM {{ bundleName }}:{{ entityName }} o ORDER BY o.id DESC";
+
+        $query = $this->om->createQuery($dql);
+        $results = $query->getResult();
+
+        foreach($results as $result) {
+            $choices[$result['{{ keyField }}']] = $result['{{ fieldName }}'];
+        }
+
+        $resolver->setDefaults(
+            array(
+                'choices' => $choices,
+            )
+        );
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $transformer = new {{ entityName }}Transformer($this->om);
+        $builder->addModelTransformer($transformer);
+    }
+
+    public function getParent()
+    {
+        return 'choice';
+    }
+
+    public function getName()
+    {
+        return 'fast{{ entityName | lower }}';
+    }
+}

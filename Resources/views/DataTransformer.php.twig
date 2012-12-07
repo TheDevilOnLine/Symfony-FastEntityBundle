@@ -1,0 +1,52 @@
+<?php
+namespace {{ bundleNamespace }}\Form\DataTransformer;
+
+use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
+use Doctrine\Common\Persistence\ObjectManager;
+
+class {{ entityName }}Transformer implements DataTransformerInterface
+{
+    /**
+     * @var ObjectManager
+     */
+    private $om;
+
+    /**
+     * @param ObjectManager $om
+     */
+    public function __construct(ObjectManager $om)
+    {
+        $this->om = $om;
+    }
+
+
+    public function transform($object)
+    {
+        if (null === $object) {
+            return "";
+        }
+
+        return $object->get{{ keyField | capitalize }}();
+    }
+
+    public function reverseTransform(${{ keyField }})
+    {
+        if (!${{ keyField }}) {
+            return null;
+        }
+
+        $object = $this->om
+            ->getRepository('{{ bundleName }}:{{ entityName }}')
+            ->findOneBy(array('{{ keyField }}' => ${{ keyField }}));
+
+        if (null === $object) {
+            throw new TransformationFailedException(sprintf(
+                'An {{ entityName }} with {{ keyField }} "%s" does not exist!',
+                ${{ keyField }}
+            ));
+        }
+
+        return $object;
+    }
+}
