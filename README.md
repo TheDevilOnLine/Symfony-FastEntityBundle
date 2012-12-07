@@ -49,7 +49,7 @@ $loader->registerNamespaces(array(
 ));
 ```
 
-### Add PaginatorBundle to your application kernel
+### Add DotCommerceFastEntityBundle to your application kernel
 
 ``` php
 <?php
