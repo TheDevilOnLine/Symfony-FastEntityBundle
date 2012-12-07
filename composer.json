@@ -14,5 +14,5 @@
             "DotCommerce\\FastEntityBundle": ""
         }
     },
-	"target-dir": "dotcommerce/src"
+	"target-dir": ""
 }
