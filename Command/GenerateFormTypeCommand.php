@@ -75,7 +75,8 @@ class GenerateFormTypeCommand extends ContainerAwareCommand
             }
 
             $output->writeln(sprintf('  > generating <comment>%s</comment>', $m->name));
-            $identifiers = $entityMetadata->getMetadata()[0]->identifier;
+			$metadata = $entityMetadata->getMetadata();
+            $identifiers = $metadata[0]->identifier;
             $count = count($identifiers);
             if($count == 1) {
                 $this->generate($identifiers[0],$bundleName,$entityName,$dir, $bundleNamespace, $input->getArgument('field'));
